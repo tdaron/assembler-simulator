@@ -173,7 +173,7 @@
               <h4 class="">Labels</h4>
             </div>
             <div class=" source-code">
-              <table class="table table-condensed table-striped codelabels">
+              <table class="labels-table">
                 <tr>
                   <th>Name</th>
                   <th>Address</th>
@@ -182,20 +182,12 @@
                 <tr ng-repeat="(name, value) in labels" class="codelabel">
                   <td class="codelabel-name">{{ name }}</td>
                   <td class="codelabel-line">
-                    <a ng-click="jumpToLine(value)">
-                      {{ get8HigherBits(value) | number:displayHex }} | {{
-                      get8LowerBits(value) | number:displayHex }}
+                    <a ng-click="jumpToLine(value)"  ng-mouseenter="setHighlight(value)"   ng-mouseleave="setHighlight(-1)">
+                      {{ value| number:displayHex:true }}
                     </a>
                   </td>
                   <td class="codelabel-value">
-                    {{ memory.data[value] | number:displayHex }} | {{
-                    memory.data[value+1] | number:displayHex }}
-                    <span
-                      ng-if="memory.data[value] >= 32 && memory.data[value] <= 126"
-                    >
-                      ('{{ getChar(memory.data[value]) }} | {{
-                      getChar(memory.data[value+1])}}')
-                    </span>
+                    {{ memory.load16(value) | number:displayHex:true }}
                   </td>
                 </tr>
               </table>
@@ -210,7 +202,7 @@
                 Change RAM display mode (HEX/ASCII)
               </button>
               <p class="text-muted">RAM</p>
-              <div style="width: 100%" class="source-code">
+              <div class="source-code">
                 <div
                   class="memory-block"
                   ng-repeat="m in memory.data track by $index"

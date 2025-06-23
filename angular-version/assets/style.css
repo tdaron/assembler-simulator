@@ -3,8 +3,6 @@
 }
 body {
   margin: 0;
-  max-height: 100vh;
-  overflow-y: hidden
 }
 .source-code {
   font-family: source-code-pro, Courier New;
@@ -131,10 +129,6 @@ button {
   border-radius: 5px;
 }
 
-table td:nth-child(odd),
-table th:nth-child(odd) {
-  background-color: #f2f2f2; /* Replace with your desired color */
-}
 
 a[ng-click] {
   text-decoration: underline;
@@ -148,6 +142,12 @@ a[ng-click]:hover {
   cursor: pointer;
   background-color: lightgray;
 }
+
+.labels-table {
+  width: 100%;
+  text-align: center;
+}
+
 
 :root {
   --editor-background: #f8f9fa;         /* Light gray background */
@@ -233,3 +233,9 @@ a[ng-click]:hover {
   vertical-align: middle;
   display: inline-block;
 }
+
+
+
+.highlighted {
+  background-color: #ff6b81;
+ }

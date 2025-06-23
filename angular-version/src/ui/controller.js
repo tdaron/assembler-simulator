@@ -20,6 +20,7 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     $scope.outputLimit = $scope.outputEndIndex - $scope.outputStartIndex + 1;
     $scope.displayStartIndex = 925;
     $scope.ramDisplayMode = "HEX";
+    $scope.memoryHighlight = -1;
 
     $scope.code = "";
     $scope.reset = function() {
@@ -137,6 +138,9 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     $scope.updateCode = function($event) {
         $scope.code = $event.target.innerText;
     };
+    $scope.$watch("memoryHighlight", function() {
+        alert("aa");
+    });
     $scope.$watch('code', function(newVal, oldVal) {
         if (newVal !== oldVal) {
             var editor = document.getElementById('editor');
@@ -188,8 +192,13 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
         }
     };
 
+    $scope.setHighlight = function(index) {
+        $scope.memoryHighlight = index;
+    };
+
     $scope.jumpToLine = function(index) {
        // $document[0].getElementById('editor').scrollIntoView();
+        $scope.setHighlight(index);
         $scope.selectedLine = $scope.mapping[index];
     };
 
@@ -201,6 +210,9 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     };
 
     $scope.getMemoryCellCss = function(index) {
+        if (index === $scope.memoryHighlight) {
+            return "highlighted";
+        }
         if (index >= $scope.outputStartIndex && index <= $scope.outputEndIndex) {
             return 'output-bg';
         } else if ($scope.isInstruction(index)) {
