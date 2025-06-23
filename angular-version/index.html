@@ -137,11 +137,18 @@
                   Assemble
                 </button>
               </form> -->
-              <div class="editor" contenteditable="true" spellcheck="false">
-                <div>function example() {</div>
-                <div>  return 42;</div>
-                <div>}</div>
+              <div class="editor" id="editor" contenteditable="true" spellcheck="false"
+                   ng-blur="updateCode($event)"
+                   ng-keyup="updateCode($event)">
+
               </div>
+              <button
+                      type="button"
+                      class="btn btn-default"
+                      ng-click="assemble()"
+              >
+                Assemble
+              </button>
 
             </div>
           </div>
@@ -366,7 +373,6 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
     <script src="assets/asmsimulator.js"></script>
-    <script src="src/editor.js"></script>
 
   </body>
 </html>

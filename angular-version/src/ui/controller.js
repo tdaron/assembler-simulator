@@ -162,12 +162,31 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
         return value & 0xFF;
     };
 
+    $scope.updateCode = function($event) {
+        $scope.code = $event.target.innerText;
+    };
+    $scope.$watch('code', function(newVal, oldVal) {
+        if (newVal !== oldVal) {
+            var editor = document.getElementById('editor');
+            if (!editor || editor.innerText === newVal) return;
+            // Clear existing content
+            editor.innerHTML = '';
+
+            // Split code by lines and append each as a new div
+            const lines = newVal.split('\n');
+            lines.forEach(line => {
+                const row = document.createElement('div');
+                row.textContent = line;
+                editor.appendChild(row);
+            });
+        }
+    });
 
 
     $scope.assemble = function() {
         try {
             $scope.reset();
-
+            console.log("CODE: ", $scope.code);
             var assembly = assembler.go($scope.code);
             $scope.mapping = assembly.mapping;
             var binary = assembly.code;

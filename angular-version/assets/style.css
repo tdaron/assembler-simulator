@@ -170,7 +170,7 @@ a[ng-click]:hover {
   counter-reset: line;
   background-color: var(--editor-background);
   border-radius: 10px;
-  color: white;
+  color: black;
 }
 
 .editor div {
