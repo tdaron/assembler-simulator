@@ -208,6 +208,7 @@
                     <th style="text-align: center">D</th>
                     <th style="text-align: center">PC</th>
                     <th style="text-align: center">SP</th>
+                    <th style="text-align: center">DP</th>
                     <th style="text-align: center">Z</th>
                     <th style="text-align: center">C</th>
                     <th style="text-align: center">F</th>
@@ -255,6 +256,11 @@
                     <td>
                       <div style="margin: auto" class="marker marker-sp">
                         <small>{{ cpu.sp | number:displayHex }}</small>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="margin: auto" class="marker marker-dp">
+                        <small>{{ cpu.dp | number:displayHex }}</small>
                       </div>
                     </td>
                     <td><small>{{ cpu.zero | flag }}</small></td>
