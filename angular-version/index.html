@@ -151,10 +151,10 @@
               <h4 class="panel-title">Output</h4>
             </div>
             <div class="panel-body source-code">
-              <div
+                <div
                 style="float: left"
                 class="output"
-                ng-repeat="m in memory.data | startFrom: outputStartIndex track by $index"
+                ng-repeat="m in memory.data | startFrom: outputStartIndex | limitTo: (outputEndIndex - outputStartIndex) track by $index"
               >
                 <span>{{ getChar(m) }}</span>
               </div>
