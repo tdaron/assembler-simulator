@@ -103,7 +103,7 @@
     <div class="">
       <div class="alert alert-danger" ng-hide="error === ''">{{ error }}</div>
       <div class="row main">
-        <div class="editor">
+        <div class="editor-container">
           <div class=" ">
             <div class="">
               <h4 class="">
@@ -119,7 +119,7 @@
               </h4>
             </div>
             <div class="">
-              <form role="form">
+             <!-- <form role="form">
                 <textarea
                   id="sourceCode"
                   class="form-control source-code"
@@ -136,7 +136,13 @@
                 >
                   Assemble
                 </button>
-              </form>
+              </form> -->
+              <div class="editor" contenteditable="true" spellcheck="false">
+                <div>function example() {</div>
+                <div>  return 42;</div>
+                <div>}</div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -360,5 +366,7 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
     <script src="assets/asmsimulator.js"></script>
+    <script src="src/editor.js"></script>
+
   </body>
 </html>
