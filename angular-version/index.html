@@ -162,7 +162,8 @@
               <div
                 style="float: left"
                 class="output"
-                ng-repeat="m in memory.data | startFrom: outputStartIndex | limitTo: (outputEndIndex - outputStartIndex) track by $index"
+                ng-repeat="m in memory.data | startFrom: outputStartIndex | limitTo: outputLimit
+                track by $index"
               >
                 <span>{{ getChar(m) }}</span>
               </div>

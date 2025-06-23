@@ -16,6 +16,8 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     { speed: 1024, desc: "1024 HZ" }];
     $scope.speed = 4;
     $scope.outputStartIndex = 925;
+    $scope.outputEndIndex = 1023;
+    $scope.outputLimit = $scope.outputEndIndex - $scope.outputStartIndex + 1;
     $scope.displayStartIndex = 925;
     $scope.ramDisplayMode = "HEX";
 
