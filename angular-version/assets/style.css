@@ -125,3 +125,16 @@ table td:nth-child(odd),
 table th:nth-child(odd) {
   background-color: #f2f2f2; /* Replace with your desired color */
 }
+
+a[ng-click] {
+  text-decoration: underline;
+  color: blue;
+  padding: 2px;
+  transition: .1s all;
+  border-radius: 5px;
+}
+
+a[ng-click]:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
