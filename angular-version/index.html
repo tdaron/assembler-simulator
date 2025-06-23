@@ -149,7 +149,7 @@
               <div
                 style="float: left"
                 class="output"
-                ng-repeat="m in memory.data | startFrom: outputStartIndex track by $index"
+                ng-repeat="m in memory.data | startFrom: outputStartIndex | limitTo: (outputEndIndex - outputStartIndex) track by $index"
               >
                 <span>{{ getChar(m) }}</span>
               </div>
@@ -260,6 +260,7 @@
                 <th style="text-align: center">D</th>
                 <th style="text-align: center">PC</th>
                 <th style="text-align: center">SP</th>
+                <th style="text-align: center">DP</th>
                 <th style="text-align: center">Z</th>
                 <th style="text-align: center">C</th>
                 <th style="text-align: center">F</th>
@@ -309,6 +310,11 @@
                     <small>{{ cpu.sp | number:displayHex }}</small>
                   </div>
                 </td>
+                <td>
+                      <div style="margin: auto" class="marker marker-dp">
+                        <small>{{ cpu.dp | number:displayHex }}</small>
+                      </div>
+                    </td>
                 <td><small>{{ cpu.zero | flag }}</small></td>
                 <td><small>{{ cpu.carry | flag }}</small></td>
                 <td><small>{{ cpu.fault | flag }}</small></td>
