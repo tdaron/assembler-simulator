@@ -21,6 +21,7 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     $scope.displayStartIndex = 925;
     $scope.ramDisplayMode = "HEX";
     $scope.screenPixels = [];
+    $scope.memoryHighlight = -1;
     $scope.code = "";
     updateScreenPixels();
 
@@ -30,6 +31,12 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
         $scope.error = '';
         $scope.selectedLine = -1;
     };
+
+    $scope.setSpeed = function(newSpeed) {
+        $scope.speed = newSpeed;
+        console.log("Speed set to !", newSpeed);
+    };
+
 
     $scope.downloadCode = function() {
         var link = document.createElement('a');
@@ -139,6 +146,7 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     $scope.updateCode = function($event) {
         $scope.code = $event.target.innerText;
     };
+
     $scope.$watch('code', function(newVal, oldVal) {
         if (newVal !== oldVal) {
             var editor = document.getElementById('editor');
@@ -190,8 +198,13 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
         }
     };
 
+    $scope.setHighlight = function(index) {
+        $scope.memoryHighlight = index;
+    };
+
     $scope.jumpToLine = function(index) {
        // $document[0].getElementById('editor').scrollIntoView();
+        $scope.setHighlight(index);
         $scope.selectedLine = $scope.mapping[index];
     };
 
@@ -202,10 +215,11 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     };
 
     $scope.getMemoryCellCss = function(index) {
+        if (index === $scope.memoryHighlight ) {
+            return "highlighted";
+        }
         if (index >= $scope.outputStartIndex && index <= $scope.outputEndIndex) {
             return 'output-bg';
-        } else if ($scope.isInstruction(index)) {
-            return 'instr-bg';
         } else if (index > cpu.sp && index <= cpu.maxSP) {
             return 'stack-bg';
         } else if (index >= $scope.displayStartIndex) {

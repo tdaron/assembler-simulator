@@ -43,10 +43,14 @@ body {
   text-align: center;
 }
 
+.marker:hover {
+  cursor: pointer;
+}
 .marker {
   width: 1.8em;
-  color: #FFF;
+  color: black;
   border-radius: 2px;
+  user-select: none;
 }
 
 .marker-ip {
@@ -146,6 +150,12 @@ a[ng-click]:hover {
   cursor: pointer;
   background-color: lightgray;
 }
+
+.labels-table {
+  width: 100%;
+  text-align: center;
+}
+
 
 :root {
   --editor-background: #f8f9fa;         /* Light gray background */
@@ -268,4 +278,33 @@ a[ng-click]:hover {
 
 .screen-pixel-off {
   background: #ffffff;
+}
+
+.highlighted {
+  background-color: #ff6b81;
+ }
+
+.clock-speed {
+  display: flex;
+}
+
+.clock-speed > button {
+  margin: 0;
+  border-radius: 0;
+  background-color: #f6f4f4;
+  border-top: 2px solid #34495e;
+  transition: .2s all;
+}
+
+.clock-speed > button.active {
+  background-color: #34495e;
+  color: white;
+}
+
+.clock-speed > button:hover:not(.active) {
+  background-color: #c6c9c9;
+}
+
+button:hover {
+  cursor: pointer;
 }
