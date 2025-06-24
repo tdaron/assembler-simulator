@@ -80,7 +80,7 @@ const editor = (el, highlight = asm, tab = '    ') => {
 
     el.addEventListener('keyup', e => {
         if (e.ctrlKey) return; // allow default behavior if Ctrl is pressed
-        if (e.keyCode >= 0x30 || e.keyCode == 0x20) {
+        if (e.keyCode >= 0x30 || e.keyCode == 0x20 || e.key === "Backspace") {
             const pos = caret();
             highlight(el);
             setCaret(pos);
