@@ -30,6 +30,12 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
         $scope.selectedLine = -1;
     };
 
+    $scope.setSpeed = function(newSpeed) {
+        $scope.speed = newSpeed;
+        console.log("Speed set to !", newSpeed);
+    };
+
+
     $scope.downloadCode = function() {
         var link = document.createElement('a');
         var content = $scope.code;
@@ -208,13 +214,11 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     };
 
     $scope.getMemoryCellCss = function(index) {
-        if (index === $scope.memoryHighlight) {
+        if (index === $scope.memoryHighlight ) {
             return "highlighted";
         }
         if (index >= $scope.outputStartIndex && index <= $scope.outputEndIndex) {
             return 'output-bg';
-        } else if ($scope.isInstruction(index)) {
-            return 'instr-bg';
         } else if (index > cpu.sp && index <= cpu.maxSP) {
             return 'stack-bg';
         } else if (index >= $scope.displayStartIndex) {
