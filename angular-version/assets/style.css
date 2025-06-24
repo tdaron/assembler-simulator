@@ -108,6 +108,11 @@ body {
   padding: 10px;
 }
 
+.editor {
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
 .col1 {
   width: 33%;
   padding: 10px;
@@ -242,6 +247,7 @@ a[ng-click]:hover {
   max-height: 50vh;
 }
 
+
 .clock-speed {
   font-weight: bold;
   margin: 0 5px;
@@ -250,7 +256,10 @@ a[ng-click]:hover {
   vertical-align: middle;
   display: inline-block;
 }
-
+.labels {
+  max-height: 25vh;
+  overflow-y: scroll;
+}
 .screen-container {
   display: flex;
   justify-content: center;

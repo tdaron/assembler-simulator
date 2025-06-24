@@ -13,6 +13,7 @@ app.directive('selectLine', [function () {
                 // Add highlight to the selected line (if valid index)
                 if (typeof lineIndex === 'number' && lineIndex >= 0 && lineIndex < editor.children.length) {
                     editor.children[lineIndex].classList.add('highlight');
+                   // editor.children[lineIndex].scrollIntoView({behavior: "smooth", block: "nearest"});
                 }
             });
         }

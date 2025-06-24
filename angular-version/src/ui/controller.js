@@ -28,7 +28,7 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     $scope.inputbuffer = inputbuffer;
     $scope.inputBufferStartIndex = $scope.displayStartIndex+screen.size;
     $scope.inputBufferEndIndex = $scope.inputBufferStartIndex + inputbuffer.size;
-
+    console.log("Input addr: ", $scope.inputBufferStartIndex);
 
 
     updateScreenPixels();
