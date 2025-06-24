@@ -307,6 +307,12 @@ button:hover {
   font-size: 1em;
 }
 
+.settings-container {
+  display: none;
+  transform-origin: top left;
+  transition: 0.5s all;
+}
+
 .settings-icon-container {
   position: absolute;
   top: 60px;
