@@ -163,14 +163,6 @@
             </div>
           </div>
           <div>
-            <!-- HERE -->
-              <button
-                type="button"
-                class="btn btn-default navbar-btn"
-                ng-click="changeRamDisplayMode()"
-              >
-                Change RAM display mode (HEX/ASCII)
-              </button>
             <h4>Memory (RAM)</h4>
             </p>
               <div class="source-code">
@@ -243,6 +235,18 @@
                     ng-class="{'active': displayInstr}"> Show
             </button>
           </div>
+
+          <h4>RAM display mode</h4>
+            <div class="selectable">
+            <button
+              ng-click="ramDisplayMode = 'HEX'"
+              ng-class="{'active': ramDisplayMode === 'HEX'}"> HEX
+            </button>
+            <button 
+              ng-click="ramDisplayMode = 'ASCII'"
+              ng-class="{'active': ramDisplayMode === 'ASCII'}"> ASCII
+            </button>
+            </div>
 
           <h4>Screen Display</h4>
           <div class="screen-container">

@@ -5,6 +5,7 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     $scope.isRunning = false;
     $scope.displayHex = true;
     $scope.displayInstr = true;
+    $scope.ramDisplayMode = "HEX";
     $scope.displayA = true;
     $scope.displayB = true;
     $scope.displayC = true;
@@ -19,7 +20,6 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     $scope.outputEndIndex = 1023;
     $scope.outputLimit = $scope.outputEndIndex - $scope.outputStartIndex + 1;
     $scope.displayStartIndex = 925;
-    $scope.ramDisplayMode = "HEX";
     $scope.screenPixels = [];
     $scope.memoryHighlight = -1;
     $scope.code = "";
@@ -203,7 +203,6 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     };
 
     $scope.jumpToLine = function(index) {
-       // $document[0].getElementById('editor').scrollIntoView();
         $scope.setHighlight(index);
         $scope.selectedLine = $scope.mapping[index];
     };
@@ -246,13 +245,6 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
             return 'marker marker-d';
         } else {
             return '';
-        }
-    };
-    $scope.changeRamDisplayMode = function() {
-        if ($scope.ramDisplayMode === 'ASCII') {
-            $scope.ramDisplayMode = 'HEX';
-        } else {
-            $scope.ramDisplayMode = 'ASCII';
         }
     };
 
