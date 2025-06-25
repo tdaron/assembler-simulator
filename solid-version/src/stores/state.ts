@@ -7,11 +7,28 @@ type SPEED = 1 | 4 | 8 | 16 | 1024
 export interface Settings {
     displayHex: boolean;
     displayInstr: boolean;
-    ramDisplayMode: "HEX" | "DEC" | "ASCII";
+    ramDisplayMode: "Number" | "ASCII";
     displayA: boolean;
     displayB: boolean;
     displayC: boolean;
     displayD: boolean;
+}
+
+export interface CPUState {
+    ip: number; 
+    pc: number;
+    sp: number;
+    dp: number;
+    a: number;
+    b: number;
+    c: number;
+    d: number;
+    flags: {
+        z: boolean; 
+        c: boolean; 
+        f: boolean; 
+        sm: boolean; 
+    };
 }
 
 export interface State {
@@ -22,6 +39,8 @@ export interface State {
     memoryHighlight: number;
     code: string;
     recordingKeys: boolean;
+    cpuState: CPUState; // Optional, will be set when CPU is initialized
+    labels?: Record<string, number>; 
 }
 
 
@@ -35,7 +54,7 @@ export function createStateStore() {
         settings: {
             displayHex: true,
             displayInstr: true,
-            ramDisplayMode: "HEX",
+            ramDisplayMode: "Number",
             displayA: true,
             displayB: true,
             displayC: true,
@@ -44,5 +63,21 @@ export function createStateStore() {
         memoryHighlight: -1,
         code: "",
         recordingKeys: false,
+        cpuState: {
+            ip: 0,
+            pc: 0,
+            sp: 924,
+            dp: 926,
+            a: 0,
+            b: 0,
+            c: 0,
+            d: 0,
+            flags: {
+                z: false,
+                c: false,
+                f: false,
+                sm: false
+            }
+        },
     });
 }

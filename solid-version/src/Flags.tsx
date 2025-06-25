@@ -1,4 +1,7 @@
+import { getStateContext } from "./stateContext";
+
 export default function Flags() {
+    let [state, setState] = getStateContext();
     return (
         <div>
             <h4>Registers / Flags</h4>
@@ -19,62 +22,58 @@ export default function Flags() {
                 </tr>
                 </thead>
                 <tbody>
-                <tr style="text-align: center" class="source-code">
+                <tr style="text-align: center">
                     <td>
                         <div
-                            style="margin: auto"
-                            ng-class="{'marker': true, 'marker-a': displayA}"
-                            ng-click="displayA = !displayA"
+                            class="marker marker-a"
+                            onClick={() => setState((prev: any) => ({ ...prev, displayA: !prev.displayA }))}
                         >
-                            <small>{/*{ cpu.gpr[0] | number:displayHex }*/}</small>
+                            <small>{state.settings.displayA ? state.cpuState.a : state.cpuState.a}</small>
                         </div>
                     </td>
                     <td>
-                        <div
-                            style="margin: auto"
+                        <div class="marker marker-b"
                             ng-class="{'marker': true, 'marker-b': displayB}"
                             ng-click="displayB = !displayB"
                         >
-                            <small>{/*{ cpu.gpr[1] | number:displayHex }*/}</small>
+                            <small>{state.settings.displayHex ? state.cpuState.b : state.cpuState.b}</small>
                         </div>
                     </td>
                     <td>
-                        <div
-                            style="margin: auto"
+                        <div class="marker marker-c"
                             ng-class="{'marker': true, 'marker-c': displayC}"
                             ng-click="displayC = !displayC"
                         >
-                            <small>{/*{ cpu.gpr[2] | number:displayHex }*/}</small>
+                            <small>{state.settings.displayHex ? state.cpuState.c : state.cpuState.c}</small>
                         </div>
                     </td>
                     <td>
-                        <div
-                            style="margin: auto"
+                        <div class="marker marker-d"
                             ng-class="{'marker': true, 'marker-d': displayD}"
                             ng-click="displayD = !displayD"
                         >
-                            <small>{/*{ cpu.gpr[3] | number:displayHex }*/}</small>
+                            <small>{state.settings.displayHex ? state.cpuState.d : state.cpuState.d}</small>
                         </div>
                     </td>
                     <td>
-                        <div style="margin: auto" class="marker marker-ip">
-                            <small>{/*{ cpu.ip | number:displayHex }*/}</small>
+                        <div class="marker marker-ip">
+                            <small>{state.settings.displayHex ? state.cpuState.ip : state.cpuState.ip}</small>
                         </div>
                     </td>
                     <td>
-                        <div style="margin: auto" class="marker marker-sp">
-                            <small>{/*{ cpu.sp | number:displayHex }*/}</small>
+                        <div class="marker marker-sp">
+                            <small>{state.settings.displayHex ? state.cpuState.sp : state.cpuState.sp}</small>
                         </div>
                     </td>
                     <td>
-                        <div style="margin: auto" class="marker marker-dp">
-                            <small>{/*{ cpu.dp | number:displayHex }*/}</small>
+                        <div class="marker marker-dp">
+                            <small>{state.settings.displayHex ? state.cpuState.dp : state.cpuState.dp}</small>
                         </div>
                     </td>
-                    <td><small>{/*{ cpu.zero | flag }*/}</small></td>
-                    <td><small>{/*{ cpu.carry | flag }*/}</small></td>
-                    <td><small>{/*{ cpu.fault | flag }*/}</small></td>
-                    <td><small>{/*{ cpu.screenMode | flag }*/}</small></td>
+                    <td><small>{state.cpuState.flags.sm.valueOf() ? '1' : '0'}</small></td>
+                    <td><small>{state.cpuState.flags.sm.valueOf() ? '1' : '0'}</small></td>
+                    <td><small>{state.cpuState.flags.sm.valueOf() ? '1' : '0'}</small></td>
+                    <td><small>{state.cpuState.flags.sm.valueOf() ? '1' : '0'}</small></td>
                 </tr>
                 </tbody>
             </table>
