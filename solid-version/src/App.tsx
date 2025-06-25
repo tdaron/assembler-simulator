@@ -42,7 +42,17 @@ function App() {
                                 >
                                     Assemble
                                 </button>
+                            <form method="post" enctype="multipart/form-data">
+                                <label for="file">Choose file to load</label>
+                                <input type="file" id="file" name="file" />
+                                <button class="btn btn-default" ng-click="loadFile()">
+                                    Load file
+                                </button>
+                            </form>
 
+                            <button class="btn btn-default" ng-click="downloadCode()">
+                                Download Code
+                            </button>
                             </div>
                         </div>
                     </div>
