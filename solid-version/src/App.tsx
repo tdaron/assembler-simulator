@@ -3,15 +3,16 @@ import {createStateStore} from "./stores/state.ts"
 import './App.css'
 import "./stores/state.ts"
 import type { SetStoreFunction } from 'solid-js/store';
-import type { CpuState } from './stores/state.ts';
+
 
 import Navbar from './navbar.tsx';
 import CodeActions from './code-actions.tsx';
 import Editor from './editor.tsx';
+import type { State } from './stores/state.ts';
 
 function App() {
     const [state, setState] = createStateStore();
-    const StateContext = createContext<[CpuState, SetStoreFunction<CpuState>]>();
+    const StateContext = createContext<[State, SetStoreFunction<State>]>();
     return (
         <StateContext.Provider value={[state, setState]}>
             <Navbar></Navbar>
