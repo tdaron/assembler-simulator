@@ -240,7 +240,7 @@ a[ng-click]:hover {
   background-color: #d3deea;
 }
 
-.source-code {
+.ram {
   overflow-y: scroll;
   /* TODO: Better way to handle RAM height */
   max-height: 50vh;
@@ -340,6 +340,7 @@ button:hover {
   background: none;
   border: none;
   padding: 0;
+  cursor:pointer;
 }
 
 .settings-icon-container svg {

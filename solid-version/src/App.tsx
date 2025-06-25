@@ -8,6 +8,8 @@ import type { CpuState } from './stores/state.ts';
 import Navbar from './navbar.tsx';
 import CodeActions from './code-actions.tsx';
 import Editor from './editor.tsx';
+import Memory from './memory.tsx';
+import Settings from './settings.tsx';
 
 function App() {
     const [state, setState] = createStateStore();
@@ -48,43 +50,10 @@ function App() {
                                 </table>
                             </div>
                         </div>
-                        <div>
-                            <h4>Memory (RAM)</h4>
-
-                            <div class="source-code">
-                                <div
-                                    class="memory-block"
-                                    ng-repeat="m in memory.data track by $index"
-                                    ng-class="getMemoryCellCss($index)"
-                                >
-                                    <div
-                                        ng-class="getMemoryInnerCellCss($index)"
-                                        ng-switch="isInstruction($index)"
-                                    >
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                        <Memory></Memory>
                     </div>
                     <div class="col2">
-            <div
-                class="settings-icon-container"
-                onClick={() => {
-                  document.querySelectorAll('.settings-container').forEach(
-                    (el) => {
-                      if ((el as HTMLElement).style.display === 'block') {
-                        (el as HTMLElement).style.display = 'none';
-                      } else {
-                        (el as HTMLElement).style.display = 'block';
-                      }
-                    }
-                  );
-                }}
-                style="cursor:pointer;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" /><circle cx="12" cy="12" r="3" /></svg>
-                        </div>
+                        <Settings></Settings>
 
                         <div class="settings-container">
                             <h4>Clock Speed</h4>
