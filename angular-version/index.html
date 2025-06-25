@@ -279,7 +279,8 @@
                       class="screen-pixel"
                       ng-class="{
                         'screen-pixel-on': pixel === 1,
-                        'screen-pixel-off': pixel === 0
+                        'screen-pixel-off': pixel === 0,
+                        'screen-pixel-ascii': pixel !== 1 && pixel !== 0
                       }"
                     ></div>
                   </td>
