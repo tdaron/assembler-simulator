@@ -245,6 +245,9 @@ a[ng-click]:hover {
   /* TODO: Better way to handle RAM height */
   max-height: 50vh;
 }
+.ram  .marker > small {
+  font-family: "Source Code Pro", monospace;
+}
 
 .screen-container {
   display: flex;
