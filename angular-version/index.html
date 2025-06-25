@@ -99,6 +99,15 @@
                 Load file
               </button>
             </div>
+            <div class="example-dropdown" ng-init="loadExamples()">
+              <label for="exampleSelect">Load Example:</label>
+              <select id="exampleSelect" 
+                      ng-model="selectedExample" 
+                      ng-options="example.name for example in examples" 
+                      ng-change="loadExampleByName(selectedExample.name)">
+                <option value="">-- Select Example --</option>
+              </select>
+            </div>
           </form>
         </div>
       </div>
@@ -107,18 +116,15 @@
       <div class="alert alert-danger" ng-hide="error === ''">{{ error }}</div>
       <div class="row main">
         <div class="editor-container">
-          <div class=" ">
-            <div class="">
-              <h4 class="">
-                Code
+          <div>
+              <h4> Code
                 <small
                   >(<a
                     href="./instruction-set.html"
                     target="_blank"
                     style="color: #337ab7"
-                    >Instruction Set</a
-                  >)</small
-                >
+                    >Instruction Set</a>)
+                </small>
               </h4>
             </div>
             <div>
@@ -135,9 +141,7 @@
               >
                 Assemble
               </button>
-
             </div>
-          </div>
         </div>
         <div class="col1">
           <div class=" ">
