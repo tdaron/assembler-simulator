@@ -1,7 +1,12 @@
-MOV 925, 1 ; Set SM flag at 1 to enable screen drawing
+; Set SM flag at 1 to enable screen drawing
+MOV 925, 1 
 .start:
-    MOV C, 927 ; Move to the start of the screen memory
+    ; Move to the start of the screen memory
+    MOV C, 927 
 .loop: 
-    MOV [C], 1 ; Set the current screen memory location to 1
-    ADD C, 2 ; Move to the next screen memory location
-    JMP .loop ; Repeat the loop indefinitely
+    ; Set the current screen memory location to 1
+    MOV [C], 1 
+    ; Move to the next screen memory location
+    ADD C, 2 
+    ; Repeat the loop indefinitely
+    JMP .loop 

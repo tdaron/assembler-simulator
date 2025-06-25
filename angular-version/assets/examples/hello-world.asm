@@ -1,4 +1,3 @@
-; Simple example
 ; Writes Hello World to the output
    JMP start
 hello: DB "Hello World!" ; Variable

@@ -136,6 +136,15 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
         return false;
     };
 
+    loadExamples = function() {
+        if ($scope.examples.length > 0) {
+            console.log('Examples already loaded');
+            return;
+        }
+        console.log('Loading examples...');
+        $scope.loadExamples();
+    };
+
     $scope.loadExamples = function() {
         $scope.examples = [
             { name: 'Hello World', file: 'hello-world.asm' },
@@ -156,12 +165,13 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
 
     $scope.loadExampleByName = function(name) {
         var example = $scope.examples.find(e => e.name === name);
-        if (example && example.code) {
-            $scope.code = example.code;
-            $scope.refreshEditorView();
-        } else {
-            console.error('Example not found or code not loaded:', name);
+        console.log('Loading example:', example);
+        if (!example) {
+            console.error('Example not found:', name);
+            return;
         }
+        $scope.code = example.code;
+        $scope.refreshEditorView();
     };
 
     $scope.getChar = function(value) {
