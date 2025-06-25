@@ -26,6 +26,7 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
     $scope.inputbuffer = inputbuffer;
     $scope.inputBufferStartIndex = $scope.displayStartIndex+screen.size;
     $scope.inputBufferEndIndex = $scope.inputBufferStartIndex + inputbuffer.size;
+    $scope.examples = [];
 
     updateScreenPixels();
     $scope.focusScreen = function () {
@@ -119,6 +120,7 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
             }
         }, 1);
     };
+
     $scope.stop = function() {
         $timeout.cancel(runner);
         $scope.isRunning = false;
@@ -132,6 +134,44 @@ app.controller('Ctrl', ['$document', '$scope', '$timeout', 'cpu', 'memory', 'ass
         }
 
         return false;
+    };
+
+    loadExamples = function() {
+        if ($scope.examples.length > 0) {
+            console.log('Examples already loaded');
+            return;
+        }
+        console.log('Loading examples...');
+        $scope.loadExamples();
+    };
+
+    $scope.loadExamples = function() {
+        $scope.examples = [
+            { name: 'Hello World', file: 'hello-world.asm' },
+            { name: 'Draw in screen', file: 'draw-in-screen.asm' },
+            { name: 'Snake', file: 'snake.asm' }
+        ];
+        $scope.examples.forEach(function(example) {
+            fetch('assets/examples/' + example.file)
+                .then(response => response.text())
+                .then(data => {
+                    example.code = data;
+                })
+                .catch(error => {
+                    console.error('Error loading example:', error);
+                });
+        });
+    };
+
+    $scope.loadExampleByName = function(name) {
+        var example = $scope.examples.find(e => e.name === name);
+        console.log('Loading example:', example);
+        if (!example) {
+            console.error('Example not found:', name);
+            return;
+        }
+        $scope.code = example.code;
+        $scope.refreshEditorView();
     };
 
     $scope.getChar = function(value) {

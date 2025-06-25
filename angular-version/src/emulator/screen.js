@@ -23,10 +23,6 @@ app.service('screen', function ($document, cpu) {
             }
             pixels.push(row);
         }
-        console.log("White", pixels[0] === 0);
-        console.log("Black", pixels[0] === 1);
-        console.log("ASCII", pixels[0] !== 0 && pixels[0] !== 1);
-        console.log("Screen pixels:", pixels);
         return pixels;
     };
 });

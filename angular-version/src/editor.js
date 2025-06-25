@@ -90,25 +90,6 @@ const editor = (el, highlight = asm, tab = '    ') => {
 
 // Turn div into an editable assembler editor
 const el = document.querySelector('.editor');
-const lines = `
-MOV 925, 1
-.start:
-    MOV C, 1000
-.loop:
-    MOV [C], 1
-    ADD C, 2
-    JMP .loop
-`.split("\n");
-
-// clear existing content
-el.innerHTML = '';
-
-// populate editor with one <div> per line
-lines.forEach(line => {
-    const row = document.createElement('div');
-    row.textContent = line;
-    el.appendChild(row);
-});
 
 el.focus();
 editor(el);

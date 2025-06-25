@@ -16,6 +16,7 @@
   </head>
 
   <body ng-controller="Ctrl">
+
     <div class="container">
       <div
         class="navbar navbar-inverse"
@@ -24,6 +25,7 @@
       >
       Simple 16-bit Assembler Simulator
       
+
       </div>
       <button class="github-fork-ribbon"> <a class="github-fork-link" href="https://github.com/ntyunyayev/assembler-simulator" title="Fork me on GitHub">Fork me on GitHub</a> </button>
     </div>
@@ -31,18 +33,19 @@
       <div class="alert alert-danger" ng-hide="error === ''">{{ error }}</div>
       <div class="row main">
         <div class="editor-container">
-          <div class=" ">
+
+          <div>
             <div class="code_buttons">
               <h4 class="code_name">
                 Code
+
                 <small
                   >(<a
                     href="./instruction-set.html"
                     target="_blank"
                     style="color: #337ab7"
-                    >Instruction Set</a
-                  >)</small
-                >
+                    >Instruction Set</a>)
+                </small>
               </h4>
               <button class="btn btn-success"
                 ng-click="run()"
@@ -124,7 +127,6 @@
           </form>
         </div>
             </div>
-          </div>
         </div>
         <div class="col1">
           <div class=" ">
