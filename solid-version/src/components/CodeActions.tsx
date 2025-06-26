@@ -6,6 +6,7 @@ import { BsFastForward } from "solid-icons/bs";
 import { TbReload } from "solid-icons/tb";
 import { FaSolidPlay } from "solid-icons/fa";
 import { IoPlay, IoPlayForward } from "solid-icons/io";
+import { AiOutlineStepForward } from "solid-icons/ai";
 
 export default function CodeActions() {
     let [state, setState] = getStateContext();
@@ -47,6 +48,7 @@ export default function CodeActions() {
             <Show when={interval() === 0}>
 
             <IoPlay color="#2ecc71" size={35} onClick={run} />
+            <AiOutlineStepForward color="#2ecc71" size={35} onClick={() => CPU.step()} />
             <IoPlayForward color="#2ecc71" size={35} onClick={runQuickly}/>
             <TbReload color="#2c3e50" size={35} />
             </Show>
