@@ -4,6 +4,8 @@ import { getStateContext } from './stateContext';
 import { assembler } from './core/assembler';
 import { CPU } from './ReactiveCPU';
 
+
+
 export default function Editor() {
   let container: HTMLDivElement | undefined;
   let editor: monaco.editor.IStandaloneCodeEditor | undefined;
@@ -37,6 +39,47 @@ export default function Editor() {
       },
     });
 
+    const keywordDocs: {[key: string]: string} = {
+      MOV: "Copy a value from source to destination. Only instruction that can write directly to memory. SP allowed.",
+      ADD: "Add two values. Affects carry and zero flags. SP allowed.",
+      SUB: "Subtract second value from first. Affects carry and zero flags. SP allowed.",
+      INC: "Increment a register by one. Affects carry and zero flags. SP allowed.",
+      DEC: "Decrement a register by one. Affects carry and zero flags. SP allowed.",
+      MUL: "Multiply A register by operand. Affects carry and zero flags.",
+      DIV: "Divide A register by operand. Affects carry and zero flags.",
+      AND: "Logical AND. Affects carry and zero flags.",
+      OR: "Logical OR. Affects carry and zero flags.",
+      XOR: "Logical XOR. Affects carry and zero flags.",
+      NOT: "Logical NOT (only on registers). Affects carry and zero flags.",
+      SHL: "Logical shift left. Equivalent to SAL. Affects carry and zero flags.",
+      SHR: "Logical shift right. Equivalent to SAR (no signed support). Affects carry and zero flags.",
+      SAL: "Arithmetic shift left. Same as SHL. Affects carry and zero flags.",
+      SAR: "Arithmetic shift right. Same as SHR (unsigned only). Affects carry and zero flags.",
+      CMP: "Compare two values. Sets zero flag if equal. SP allowed.",
+      JMP: "Unconditional jump to address or label.",
+      JC: "Jump if carry is set. Equivalent: JB, JNAE.",
+      JNC: "Jump if carry is clear. Equivalent: JNB, JAE.",
+      JZ: "Jump if zero flag is set. Equivalent: JE.",
+      JNZ: "Jump if zero flag is clear. Equivalent: JNE.",
+      JA: "Jump if above (carry=0 and zero=0). Equivalent: JNBE.",
+      JNBE: "Jump if not below or equal (carry=0 and zero=0). Equivalent: JA.",
+      JAE: "Jump if above or equal (carry=0). Equivalent: JNC, JNB.",
+      JNB: "Jump if not below (carry=0). Equivalent: JNC, JAE.",
+      JB: "Jump if below (carry=1). Equivalent: JC, JNAE.",
+      JNAE: "Jump if not above or equal (carry=1). Equivalent: JC, JB.",
+      JBE: "Jump if below or equal (carry=1 or zero=1). Equivalent: JNA.",
+      JNA: "Jump if not above (carry=1 or zero=1). Equivalent: JBE.",
+      JE: "Jump if equal (zero=1). Equivalent: JZ.",
+      JNE: "Jump if not equal (zero=0). Equivalent: JNZ.",
+      CALL: "Call a subroutine. Pushes return address to stack and jumps.",
+      RET: "Return from subroutine. Pops return address into instruction pointer.",
+      PUSH: "Push value to stack. Decreases SP.",
+      POP: "Pop value from stack into register. Increases SP.",
+      HLT: "Halt execution.",
+      DB: "Define byte. Allows constants, characters, or strings."
+    };
+    
+
     monaco.languages.registerCompletionItemProvider(languageId, {
       provideCompletionItems: (model, position) => {
         const word = model.getWordUntilPosition(position);
@@ -49,9 +92,14 @@ export default function Editor() {
 
         const keywordSuggestions = keywords.map(k => ({
           label: k,
-          kind: monaco.languages.CompletionItemKind.Keyword,
+          kind: monaco.languages.CompletionItemKind.Function,
           insertText: k,
           range,
+          documentation: {
+            value: `**${k}**: ${keywordDocs[k] || 'No documentation available.'}`,
+            isTrusted: true
+          },
+          
         }));
 
         const registerSuggestions = registers.map(r => ({
@@ -59,9 +107,29 @@ export default function Editor() {
           kind: monaco.languages.CompletionItemKind.Variable,
           insertText: r,
           range,
+       
+
         }));
 
         return { suggestions: [...keywordSuggestions, ...registerSuggestions] };
+      },
+    });
+
+
+    
+    // Register hover provider
+    monaco.languages.registerHoverProvider(languageId, {
+      provideHover: (model, position) => {
+        const word = model.getWordAtPosition(position);
+        if (!word) return null;
+    
+        const keyword: string = word.word.toUpperCase();
+        if (keywordDocs[keyword]) {
+          return {
+            contents: [{ value: `**${keyword}**: ${keywordDocs[keyword]}` }],
+          };
+        }
+        return null;
       },
     });
 
@@ -97,9 +165,13 @@ export default function Editor() {
       lineNumbersMinChars: 1,
       padding: { top: 10 },
       fontFamily: "Source Code Pro",
-      fontSize: 20
+      fontSize: 20,
+      
 
     });
+
+    //@ts-ignore
+    editor.getContribution("editor.contrib.suggestController")!.widget.value._setDetailsVisible(true);
 
     const changeDisposable = editor.onDidChangeModelContent(() => {
       setState("code", editor!.getValue());
