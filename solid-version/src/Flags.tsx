@@ -75,6 +75,7 @@ export default function Flags() {
                     <td><small>{/*{ cpu.carry | flag }*/}</small></td>
                     <td><small>{/*{ cpu.fault | flag }*/}</small></td>
                     <td><small>{/*{ cpu.screenMode | flag }*/}</small></td>
+                    
                 </tr>
                 </tbody>
             </table>

@@ -1,4 +1,4 @@
-import { createSignal, onMount } from 'solid-js';
+import { onMount } from 'solid-js';
 import { assembler } from './core/assembler';
 import { CPU } from './core/cpu';
 import { getStateContext } from './stateContext';

@@ -1,4 +1,5 @@
 import { createStore, type SetStoreFunction } from "solid-js/store";
+import { DEVICES } from "../core/devices";
 
 export class ReactiveMemory {
   data: number[];
@@ -6,7 +7,7 @@ export class ReactiveMemory {
   lastAccess: number;
 
   constructor() {
-    const [data, setData] = createStore(Array(4096).fill(0));
+    const [data, setData] = createStore(Array(DEVICES[DEVICES.length-1].end()).fill(0));
     this.data = data;
     this._setData = setData;
     this.lastAccess = -1;
