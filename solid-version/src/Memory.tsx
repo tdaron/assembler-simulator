@@ -49,7 +49,6 @@ export default function Memory() {
                 <Index each={state.cpuState.memory}>
                     {(item, index) =>
                         <div class="memory-block">
-
                             <div class={`marker ${getBGClass(index)}`}>
                                 <small>{state.settings.displayHex ? item().toString(16).padStart(2, '0') : item()}</small>
                             </div>

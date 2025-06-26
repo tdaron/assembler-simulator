@@ -6,7 +6,7 @@ import type { CPUState, Settings } from "./stores/state";
 import { CPU } from "./ReactiveCPU";
 
 export default function Screen() {
-    let [state, setState] = getStateContext();
+    let [state, _] = getStateContext();
 
     const getBright = (index: number) => {
         console.log("Running here !")
@@ -27,9 +27,6 @@ export default function Screen() {
     
         return `rgb(${r},${g},${b})`;
     }
-    
-
-
 
 
     return (

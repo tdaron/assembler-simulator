@@ -700,7 +700,7 @@ export class LittleCPU {
     }
 
     constructor(memory: IMemory) {
-        this.maxSP = DEVICES.base.end();
+        this.maxSP = DEVICES.base.end() - 1;
         this.minSP = DEVICES.base.start();
         this.memory = memory;
         this.gpr = [0, 0, 0, 0];
