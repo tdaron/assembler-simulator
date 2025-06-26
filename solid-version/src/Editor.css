@@ -14,9 +14,18 @@
     display: none;
 }
 
+.editor-container * {
+  font-family: "Source Code Pro";
+}
+
+.editor-header {
+    
+}
+
 .editor-header h4 {
     margin: 0 0 10px 0;
     color: #d4d4d4;
+    display: inline-block;
 }
 
 .editor-header small a {
@@ -114,15 +123,18 @@
     gap: 10px;
 }
 
+
 .btn-primary {
     background: #0e639c;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
+    width: 80px;
+    justify-content: center;
 }
 
 .btn-primary:hover {
@@ -133,10 +145,11 @@
     background: #3c3c3c;
     color: #d4d4d4;
     border: none;
-    padding: 8px 16px;
+    padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    width: 55px;
 }
 
 .btn-secondary:hover {

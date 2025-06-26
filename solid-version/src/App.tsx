@@ -3,7 +3,6 @@ import './App.css'
 import "./stores/state.ts"
 import { StateContext } from './stateContext.ts';
 import Navbar from './Navbar.tsx';
-import CodeActions from './CodeActions.tsx';
 import Editor from './Editor.tsx';
 import Memory from './Memory.tsx';
 import Settings from './Settings.tsx';
@@ -20,7 +19,6 @@ function App() {
     return (
         <StateContext.Provider value={[state, setState]}>
             <Navbar/>
-            <CodeActions/>
             <div class="columns">
                 <div class="col0">
                     <Editor/>

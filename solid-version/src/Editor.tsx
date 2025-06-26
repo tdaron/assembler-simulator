@@ -3,6 +3,8 @@ import { assembler } from './core/assembler';
 import { CPU } from './ReactiveCPU';
 import { getStateContext } from './stateContext';
 import "./Editor.css"
+import CodeActions from './CodeActions.tsx';
+
 export default function Editor() {
   const [state, setState] = getStateContext();
 
@@ -118,6 +120,7 @@ export default function Editor() {
             </a>)
           </small>
         </h4>
+        <CodeActions/>
       </div>
 
       {/* Editor */}
