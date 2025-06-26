@@ -21,7 +21,7 @@ export default function Settings() {
             <div
                 class="settings-icon-container"
                 onClick={() => enableSettingsVue()}>
-                <FaSolidGear/>
+                <FaSolidGear color="#444" size={40}/>
             </div>
             <div class="settings-container">
                 <h4 class="settings">Numbers Representation</h4>

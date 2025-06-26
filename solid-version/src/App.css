@@ -29,7 +29,7 @@ button {
   align-items: center;
   padding-right: 40px;
 }
-.code_buttons svg {
+.code_buttons svg, .settings-icon-container svg {
   margin-right: 10px;
   background-color: rgba(0, 0, 0, .05);;
   border: 1px solid rgba(0, 0, 0, .2);
@@ -38,7 +38,7 @@ button {
   transition: .2s all;
 }
 
-.code_buttons svg:hover {
+.code_buttons svg:hover, .settings-icon-container svg:hover {
   cursor: pointer;
   filter: brightness(50%);
   background-color: rgba(0, 0, 0, .2);;
@@ -512,17 +512,7 @@ button:hover {
   cursor:pointer;
 }
 
-.settings-icon-container svg {
-  display: block;
-  width: 32px;
-  height: 32px;
-  color: #444;
-  transition: color 0.2s;
-}
 
-.settings-icon-container:hover svg {
-  color: #1c7ed6;
-}
 
 .instruction-set-button {
   color: #337ab7
