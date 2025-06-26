@@ -70,8 +70,8 @@ export function createStateStore() {
         cpuState: {
             memory: CPU.memory.data,
             pc: 0,
-            sp: 924,
-            dp: 926,
+            sp: CPU.sp,
+            dp: CPU.dp,
             a: 0,
             b: 0,
             c: 0,

@@ -3,6 +3,7 @@ import { Index } from "solid-js";
 import { getStateContext } from "./stateContext";
 import { DEVICES } from "./core/devices";
 import type { CPUState, Settings } from "./stores/state";
+import { CPU } from "./ReactiveCPU";
 
 export default function Memory() {
     let [state, setState] = getStateContext();
@@ -23,6 +24,8 @@ export default function Memory() {
         const match = registerMap.find(
             ({ settingKey, stateKey }) => settings[settingKey] && cpuState[stateKey] === index
         );
+
+        if (index > state.cpuState.sp && index <= CPU.maxSP) { return "stack-bg"}
     
         return match ? match.className : "";
     };

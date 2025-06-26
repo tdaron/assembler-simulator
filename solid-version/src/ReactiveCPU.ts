@@ -22,6 +22,7 @@ class ReactiveCPU extends LittleCPU {
             c: this.gpr[2],
             d: this.gpr[3],
             dp: this.dp,
+            sp: this.sp,
             pc: this.ip,
             flags: {
                 ...prev.flags,
