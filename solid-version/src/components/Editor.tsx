@@ -1,8 +1,8 @@
 import { createEffect, onCleanup } from 'solid-js';
-import { assembler } from './core/assembler';
-import { CPU } from './ReactiveCPU';
-import { getStateContext } from './stateContext';
-import "./Editor.css"
+import { assembler } from '../core/assembler';
+import { CPU } from '../utils/ReactiveCPU';
+import { getStateContext } from '../utils/stateContext';
+import "../styles/editor.css";
 export default function Editor() {
   const [state, setState] = getStateContext();
 

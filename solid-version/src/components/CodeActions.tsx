@@ -1,6 +1,6 @@
 import { createEffect, createSignal, Show } from "solid-js";
-import { CPU } from "./ReactiveCPU";
-import { getStateContext } from "./stateContext";
+import { CPU } from "../utils/ReactiveCPU";
+import { getStateContext } from "../utils/stateContext";
 
 export default function CodeActions() {
     let [state, _] = getStateContext();

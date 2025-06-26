@@ -1,9 +1,9 @@
 
 import { Index } from "solid-js";
-import { getStateContext } from "./stateContext";
-import { DEVICES } from "./core/devices";
-import type { CPUState, Settings } from "./stores/state";
-import { CPU } from "./ReactiveCPU";
+import { getStateContext } from "../utils/stateContext";
+import { DEVICES } from "../core/devices";
+import type { CPUState, Settings } from "../stores/state";
+import { CPU } from "../utils/ReactiveCPU";
 
 export default function Memory() {
     let [state, _] = getStateContext();
