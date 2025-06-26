@@ -42,9 +42,6 @@ export default function Memory() {
         return "";
     }
 
-
-    
-
     return (
         <>
             <h4>Memory (RAM)</h4>

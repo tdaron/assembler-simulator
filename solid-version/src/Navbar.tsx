@@ -1,7 +1,13 @@
+import { onMount } from 'solid-js';
 import { getStateContext } from './stateContext';
+import { loadExamples } from './stores/state';
 
 export default function Navbar() {
     const [state, setState] = getStateContext();
+
+    onMount(() => {
+        loadExamples(setState);
+    });
 
     return (
     <nav class="navbar">
