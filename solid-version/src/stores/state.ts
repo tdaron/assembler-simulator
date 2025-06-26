@@ -12,10 +12,12 @@ export interface Settings {
     displayB: boolean;
     displayC: boolean;
     displayD: boolean;
+    displayPC: boolean;
+    displaySP: boolean;
+    displayDP: boolean;
 }
 
 export interface CPUState {
-    ip: number; 
     pc: number;
     sp: number;
     dp: number;
@@ -59,12 +61,14 @@ export function createStateStore() {
             displayB: true,
             displayC: true,
             displayD: true,
+            displayPC: true,
+            displaySP: true,
+            displayDP: true,
         },
         memoryHighlight: -1,
         code: "",
         recordingKeys: false,
         cpuState: {
-            ip: 0,
             pc: 0,
             sp: 924,
             dp: 926,
