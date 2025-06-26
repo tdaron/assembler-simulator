@@ -43,8 +43,9 @@ export interface State {
     memoryHighlight: number;
     code: string;
     recordingKeys: boolean;
-    cpuState: CPUState; // Optional, will be set when CPU is initialized
+    cpuState: CPUState;
     labels?: Record<string, number>; 
+    examples?: { name: string; code: string }[]; 
 }
 
 // --- Store Creation ---
@@ -84,5 +85,39 @@ export function createStateStore() {
                 sm: false
             }
         },
+        labels: {},
+        examples: []
     });
+}
+
+export async function loadExamples(set: SetStoreFunction<State>) {
+    const exampleList = [
+        { name: 'Hello World', file: 'hello-world.asm' },
+        { name: 'Draw in screen', file: 'draw-in-screen.asm' },
+        { name: 'Snake', file: 'snake.asm' }
+    ];
+
+    const loadedExamples = await Promise.all(
+        exampleList.map(async (example) => {
+            try {
+                const response = await fetch('assets/examples/' + example.file);
+                const code = await response.text();
+                return { ...example, code };
+            } catch (error) {
+                console.error('Error loading example:', error);
+                return { ...example, code: '' };
+            }
+        })
+    );
+
+    set("examples", loadedExamples);
+}
+
+export function loadExampleByName(name: string, set: SetStoreFunction<State>, state: State) {
+    const example = state.examples?.find(e => e.name === name);
+    if (!example) {
+        console.error('Example not found:', name);
+        return;
+    }
+    set("code", example.code || "");
 }

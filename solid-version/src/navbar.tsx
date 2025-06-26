@@ -1,4 +1,8 @@
+import { getStateContext } from './stateContext';
+
 export default function Navbar() {
+    const [state, setState] = getStateContext();
+
     return (
     <nav class="navbar">
         <div class="navbar-header">
@@ -21,5 +25,27 @@ export default function Navbar() {
         <button type="button" ng-click="downloadCode()">
             Download Code
         </button>
+
+        <div class="example-dropdown" ng-init="loadExamples()">
+            <label for="exampleSelect">Load Example:</label>
+            <select 
+                id="exampleSelect" 
+                class="example-select"
+                value={state.examples?.find(example => example.code === state.code)?.name || ""}
+                onchange={(e) => {
+                    const selectedExample = state.examples?.find(example => example.name === e.currentTarget.value);
+                    if (selectedExample) {
+                        setState("code", selectedExample.code);
+                    }
+                }}>
+                <option value="">-- Select Example ---</option>
+                {state.examples?.map(example => (
+                    <option value={example.name} selected={example.code === state.code}>
+                        {example.name}
+                    </option>
+                ))}
+            </select>
+    </div>
+
     </nav>
 )};
