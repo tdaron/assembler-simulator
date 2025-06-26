@@ -1,6 +1,11 @@
 import { createEffect, createSignal, Show } from "solid-js";
 import { CPU } from "../utils/ReactiveCPU";
 import { getStateContext } from "../utils/stateContext";
+import { VsDebugAlt, VsDebugPause } from "solid-icons/vs";
+import { BsFastForward } from "solid-icons/bs";
+import { TbReload } from "solid-icons/tb";
+import { FaSolidPlay } from "solid-icons/fa";
+import { IoPlay, IoPlayForward } from "solid-icons/io";
 
 export default function CodeActions() {
     let [state, setState] = getStateContext();
@@ -35,24 +40,17 @@ export default function CodeActions() {
     })
     return (
        <div class="code_buttons">
-            <button type="button" class="btn btn-success" onClick={run} disabled={interval() != 0} title="Run">
-                &#x25B6
-            </button>
-            <button type="button" class="btn btn-success" onClick={runQuickly} disabled={interval() != 0} title="Run quickly">
-                &#x25B6<span style="margin-left:-0.3em;">&#x25B6</span>
-            </button>
             <Show when={interval() != 0}>
-                <button type="button" class="btn btn-stop btn-default" onClick={stop} title="Stop">
-                &#x23F8
-            </button>
+                <VsDebugPause color="red" size={35} onClick={stop}/>    
+            
             </Show>
-       
-            <button type="button" class="btn btn-step btn-default" onClick={() => CPU.step()} title="Step">
-                <span class="glyphicon glyphicon-forward"></span>
-                &#x2B95
-            </button>
-            <button type="button" class="btn btn-default btn-reset" ng-click="reset()" title="Reset">
-                &#x21BB
-            </button>
+            <Show when={interval() === 0}>
+
+            <IoPlay color="#2ecc71" size={35} onClick={run} />
+            <IoPlayForward color="#2ecc71" size={35} onClick={runQuickly}/>
+            <TbReload color="#2c3e50" size={35} />
+            </Show>
+
+            
         </div>
 )};

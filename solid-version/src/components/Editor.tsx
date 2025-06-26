@@ -272,7 +272,7 @@ export default function Editor() {
       <div
         ref={container}
         style={{
-          height: "500px",
+          height: "80vh",
           width: "100%",
           "border-radius": "8px",
           overflow: "visible",
