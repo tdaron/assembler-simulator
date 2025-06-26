@@ -1,7 +1,6 @@
 import { assembler } from '../core/assembler';
 import { CPU } from '../utils/ReactiveCPU';
 import { getStateContext } from '../utils/stateContext';
-import "../styles/editor.css"; /* HERE */
 import { createSignal, onMount, onCleanup, createEffect, batch } from 'solid-js';
 import * as monaco from 'monaco-editor';
 

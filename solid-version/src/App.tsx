@@ -13,11 +13,12 @@ import Screen from './components/Screen.tsx';
 import { CPU } from "./utils/ReactiveCPU.ts";
 import { onMount } from "solid-js";
 import { Show } from "solid-js";
+import { DEVICES } from "./core/devices.ts";
 
 function App() {
     const [state, setState] = createStateStore();
     CPU.setup(state, setState);
-    
+
     //@ts-ignore
     window.CPU = CPU; // Debug purposes
     //@ts-ignore
