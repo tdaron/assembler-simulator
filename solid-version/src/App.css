@@ -482,8 +482,10 @@ button {
 }
 
 /*------ Code actions ------*/
-.code-buttons {
-  z-index: 2;
+.code_buttons {
+  width: fit-content;
+  display: inline-block;
+  
 }
 
 /*------ Links general ------*/

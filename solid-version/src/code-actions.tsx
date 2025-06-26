@@ -1,9 +1,6 @@
 export default function CodeActions() {
     return (
-    <div class="code_buttons">
-      <h4 class="code_name">
-        Code
-      </h4>
+      <div class="code_buttons">
       <button class="btn btn-success"
         ng-click="run()"
         ng-hide="isRunning"

@@ -14,19 +14,18 @@ function App() {
     return (
         <StateContext.Provider value={[state, setState]}>
             <Navbar></Navbar>
-            <CodeActions></CodeActions>
             <div>
                 <div class="alert alert-danger" ng-hide="error === ''">ERROR</div> {/* TODO: Fix this */}
-                <div class="row main">
+                <div class="main">
                     <div class="editor-container">
                         <div>
-                            <div>
-                                <h4>
+                                <h4 class="code_name">
                                     Code
                                     <small>(
                                         <a class="instruction-set-button" href="./instruction-set.html" target="_blank">Instruction Set</a>
                                     )</small>
                                 </h4>
+                                <CodeActions></CodeActions>
                             </div>
                             <div>
                                 <div class="editor" id="editor"
@@ -53,7 +52,6 @@ function App() {
                             <button class="btn btn-default" ng-click="downloadCode()">
                                 Download Code
                             </button>
-                            </div>
                         </div>
                     </div>
                     <div class="col1">
