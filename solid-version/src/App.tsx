@@ -13,6 +13,7 @@ import { CPU } from "./utils/ReactiveCPU.ts";
 import { onMount } from "solid-js";
 import { Show } from "solid-js";
 import { DEVICES } from "./core/devices.ts";
+import SelectExample from "./components/SelectExample.tsx";
 
 function App() {
     const [state, setState] = createStateStore();
@@ -34,6 +35,7 @@ function App() {
             <Navbar/>
             <div class="columns">
                 <div class="col0">
+                    <SelectExample/>
                     <Editor />
                 </div>
                 <div class="col1">
