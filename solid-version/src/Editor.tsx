@@ -2,9 +2,8 @@ import { createEffect, onMount } from 'solid-js';
 import { assembler } from './core/assembler';
 import { CPU } from './ReactiveCPU';
 import { getStateContext } from './stateContext';
-interface AssemblyEditorProps { }
 
-export default function AssemblyEditor(props: AssemblyEditorProps) {
+export default function AssemblyEditor() {
   const [state, setState] = getStateContext();
   let editorRef: HTMLDivElement | undefined;
 
@@ -108,6 +107,7 @@ export default function AssemblyEditor(props: AssemblyEditorProps) {
       for (var i = 0, l = code.length; i < l; i++) {
         CPU.memory.store(i, code[i]);
       }
+      setState("labels", Object.entries(labels));
     } catch (err: {error: string, line: number} | any) {
       setState("error", err.error+" (ligne "+err.line+")");
     }

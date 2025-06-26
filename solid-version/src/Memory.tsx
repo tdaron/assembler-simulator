@@ -48,20 +48,17 @@ export default function Memory() {
     return (
         <>
             <h4>Memory (RAM)</h4>
-
             <div class="ram">
                 <Index each={state.cpuState.memory}>
                     {(item, index) =>
                         <div class="memory-block">
+
                             <div class={`marker ${getBGClass(index)}`}>
-                                <small>{item().toString(16).padStart(2, '0')}</small>
+                                <small>{state.settings.displayHex ? item().toString(16).padStart(2, '0') : item()}</small>
                             </div>
                         </div>
                     }
                 </Index>
-
-
-
             </div>
         </>
     )

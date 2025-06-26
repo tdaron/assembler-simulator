@@ -1,4 +1,9 @@
+import { For } from 'solid-js';
+import { getStateContext } from './stateContext';
+
 export default function Labels() {
+    const [state] = getStateContext();
+    
     return (
         <div>
             <h4>Labels</h4>
@@ -9,17 +14,15 @@ export default function Labels() {
                         <th>Address</th>
                         <th>Value</th>
                     </tr>
-                    <tr ng-repeat="(name, value) in labels" class="codelabel">
-                        <td class="codelabel-name">{/*name*/}</td>
-                        <td class="codelabel-line">
-                            <a ng-click="jumpToLine(value)"  ng-mouseenter="setHighlight(value)"   ng-mouseleave="setHighlight(-1)">
-                                {/*{ value| number:displayHex:true }*/}
-                            </a>
-                        </td>
-                        <td class="codelabel-value">
-                            {/*{ memory.load16(value) | number:displayHex:true }*/}
-                        </td>
-                    </tr>
+                    <For each={state.labels}>
+                        {([name, address]) => (
+                            <tr>
+                                <td>{name}</td>
+                                <td>{state.settings.displayHex ? address.toString(16).padStart(4, '0') : address}</td>
+                                <td>{state.cpuState.memory[address]}</td>
+                            </tr>
+                        )}
+                    </For>
                 </tbody>
             </table>
         </div>
