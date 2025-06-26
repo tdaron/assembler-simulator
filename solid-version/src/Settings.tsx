@@ -1,66 +1,86 @@
 import { FaSolidGear } from 'solid-icons/fa'
+import { getStateContext } from './stateContext';
 
 export default function Settings() {
+    const [state, setState] = getStateContext();
+    
+    function enableSettingsVue() {
+        document.querySelectorAll('.settings-container').forEach(
+            (el) => {
+                if ((el as HTMLElement).style.display === 'block') {
+                    (el as HTMLElement).style.display = 'none';
+                } else {
+                    (el as HTMLElement).style.display = 'block';
+                }
+            }
+        );
+    }
+
     return (
         <div>
             <div
                 class="settings-icon-container"
-                onClick={() => {
-                    document.querySelectorAll('.settings-container').forEach(
-                    (el) => {
-                        if ((el as HTMLElement).style.display === 'block') {
-                        (el as HTMLElement).style.display = 'none';
-                        } else {
-                        (el as HTMLElement).style.display = 'block';
-                        }
-                    }
-                    );
-                }}>
+                onClick={() => enableSettingsVue()}>
                 <FaSolidGear/>
             </div>
             <div class="settings-container">
                 <h4 class="settings">Numbers Representation</h4>
                 <div class="selectable">
                     <button
-                        ng-click="displayHex = false"
-                        ng-class="{'active': !displayHex}"> Decimal
+                        onclick={() => setState("settings", "displayHex", false)}
+                        classList={{ 'active': !state.settings.displayHex }}> Decimal
                     </button>
                     <button
-                        ng-click="displayHex = true"
-                        ng-class="{'active': displayHex}"> Hexadecimal
+                        onclick={() => setState("settings", "displayHex", true)}
+                        classList={{ 'active': state.settings.displayHex }}> Hex
                     </button>
                 </div>
 
                 <h4>Instructions in RAM</h4>
                 <div class="selectable">
                     <button
-                        ng-click="displayInstr = false"
-                        ng-class="{'active': !displayInstr}"> Hide
+                        onclick={() => setState("settings", "displayInstr", false)}
+                        classList={{ 'active': !state.settings.displayInstr }}> Hide
                     </button>
                     <button
-                        ng-click="displayInstr = true"
-                        ng-class="{'active': displayInstr}"> Show
+                        onclick={() => setState("settings", "displayInstr", true)}
+                        classList={{ 'active': state.settings.displayInstr }}> Show
                     </button>
                 </div>
 
                 <h4>RAM display mode</h4>
                 <div class="selectable">
                     <button
-                        ng-click="ramDisplayMode = 'HEX'"
-                        ng-class="{'active': ramDisplayMode === 'HEX'}"> HEX
+                        onclick={() => setState("settings", "ramDisplayMode", 'Number')}
+                        classList={{ 'active': state.settings.ramDisplayMode === 'Number' }}> Number
                     </button>
                     <button
-                        ng-click="ramDisplayMode = 'ASCII'"
-                        ng-class="{'active': ramDisplayMode === 'ASCII'}"> ASCII
+                        onclick={() => setState("settings", "ramDisplayMode", 'ASCII')}
+                        classList={{ 'active': state.settings.ramDisplayMode === 'ASCII' }}> ASCII
                     </button>
                 </div>
 
                 <h4>Clock Speed</h4>
                 <div class="selectable">
                     <button
-                        ng-repeat="item in speeds"
-                        ng-click="setSpeed(item.speed)"
-                        ng-class="{'active': speed === item.speed}"> /* TODO correct this */
+                        onclick={() => setState("speed", 1)}
+                        classList={{ 'active': state.speed === 1 }}> 1 Hz
+                    </button>
+                    <button
+                        onclick={() => setState("speed", 4)}
+                        classList={{ 'active': state.speed === 4 }}> 4 Hz
+                    </button>
+                    <button
+                        onclick={() => setState("speed", 8)}
+                        classList={{ 'active': state.speed === 8 }}> 8 Hz
+                    </button>
+                    <button
+                        onclick={() => setState("speed", 16)}
+                        classList={{ 'active': state.speed === 16 }}> 16 Hz
+                    </button>
+                    <button
+                        onclick={() => setState("speed", 1024)}
+                        classList={{ 'active': state.speed === 1024 }}> 1024 Hz
                     </button>
             </div>
         </div>

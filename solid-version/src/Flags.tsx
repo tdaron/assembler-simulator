@@ -44,7 +44,7 @@ export default function Flags() {
                             }
                             onClick={() => changeColorDisplay("displayA")}
                         >
-                            <small>{state.settings.displayA ? state.cpuState.a : state.cpuState.a}</small>
+                            <small>{state.settings.displayA ? state.cpuState.a.toString(16) : state.cpuState.a}</small>
                         </div>
                     </td>
                     <td>
@@ -56,7 +56,7 @@ export default function Flags() {
                             }
                             onclick={() => changeColorDisplay("displayB")}
                         >
-                            <small>{state.settings.displayHex ? state.cpuState.b : state.cpuState.b}</small>
+                            <small>{state.settings.displayHex ? state.cpuState.b.toString(16) : state.cpuState.b}</small>
                         </div>
                     </td>
                     <td>
@@ -68,7 +68,7 @@ export default function Flags() {
                             }
                             onclick={() => changeColorDisplay("displayC")}
                         >
-                            <small>{state.settings.displayHex ? state.cpuState.c : state.cpuState.c}</small>
+                            <small>{state.settings.displayHex ? state.cpuState.c.toString(16) : state.cpuState.c}</small>
                         </div>
                     </td>
                     <td>
@@ -80,7 +80,7 @@ export default function Flags() {
                             }
                             onclick={() => changeColorDisplay("displayD")}
                         >
-                            <small>{state.settings.displayHex ? state.cpuState.d : state.cpuState.d}</small>
+                            <small>{state.settings.displayHex ? state.cpuState.d.toString(16) : state.cpuState.d}</small>
                         </div>
                     </td>
                     <td>
@@ -92,7 +92,7 @@ export default function Flags() {
                                 }
                             onclick={() => changeColorDisplay("displayPC")}
                         >
-                            <small>{state.settings.displayHex ? state.cpuState.pc : state.cpuState.pc}</small>
+                            <small>{state.settings.displayHex ? state.cpuState.pc.toString(16) : state.cpuState.pc}</small>
                         </div>
                     </td>
                     <td>
@@ -104,7 +104,7 @@ export default function Flags() {
                             }
                             onclick={() => changeColorDisplay("displaySP")}
                         >
-                            <small>{state.settings.displayHex ? state.cpuState.sp : state.cpuState.sp}</small>
+                            <small>{state.settings.displayHex ? state.cpuState.sp.toString(16) : state.cpuState.sp}</small>
                         </div>
                     </td>
                     <td>
@@ -116,21 +116,13 @@ export default function Flags() {
                             }
                             onclick={() => changeColorDisplay("displayDP")}
                         >
-                            <small>{state.settings.displayHex ? state.cpuState.dp : state.cpuState.dp}</small>
+                            <small>{state.settings.displayHex ? state.cpuState.dp.toString(16) : state.cpuState.dp}</small>
                         </div>
                     </td>
-<<<<<<< solid
-                    <td><small>{/*{ cpu.zero | flag }*/}</small></td>
-                    <td><small>{/*{ cpu.carry | flag }*/}</small></td>
-                    <td><small>{/*{ cpu.fault | flag }*/}</small></td>
-                    <td><small>{/*{ cpu.screenMode | flag }*/}</small></td>
-                    
-=======
                     <td><small>{state.cpuState.flags.sm.valueOf() ? '1' : '0'}</small></td>
                     <td><small>{state.cpuState.flags.sm.valueOf() ? '1' : '0'}</small></td>
                     <td><small>{state.cpuState.flags.sm.valueOf() ? '1' : '0'}</small></td>
                     <td><small>{state.cpuState.flags.sm.valueOf() ? '1' : '0'}</small></td>
->>>>>>> piwy
                 </tr>
                 </tbody>
             </table>

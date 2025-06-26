@@ -2,9 +2,8 @@ import { onMount } from 'solid-js';
 import { assembler } from './core/assembler';
 import { CPU } from './core/cpu';
 import { getStateContext } from './stateContext';
-interface AssemblyEditorProps { }
 
-export default function AssemblyEditor(props: AssemblyEditorProps) {
+export default function AssemblyEditor() {
   const [state, setState] = getStateContext();
   let editorRef: HTMLDivElement | undefined;
 
