@@ -1,7 +1,7 @@
 
 import { Index, Show } from "solid-js";
-import { getStateContext } from "./stateContext";
-import { DEVICES } from "./core/devices";
+import { getStateContext } from "../utils/stateContext";
+import { DEVICES } from "../core/devices";
 
 export default function Screen() {
     let [state, _] = getStateContext();

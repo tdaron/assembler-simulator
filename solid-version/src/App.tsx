@@ -1,16 +1,16 @@
 import { createStateStore, loadExamples } from "./stores/state.ts"
 import './App.css'
 import "./stores/state.ts"
-import { StateContext } from './stateContext.ts';
-import Navbar from './Navbar.tsx';
-import CodeActions from './CodeActions.tsx';
-import Editor from './Editor.tsx';
-import Memory from './Memory.tsx';
-import Settings from './Settings.tsx';
-import Flags from './Flags.tsx';
-import Labels from './Labels.tsx';
-import Screen from './Screen.tsx';
-import { CPU } from "./ReactiveCPU.ts";
+import { StateContext } from './utils/stateContext.ts';
+import Navbar from './components/Navbar.tsx';
+import CodeActions from './components/CodeActions.tsx';
+import Editor from './components/Editor.tsx';
+import Memory from './components/Memory.tsx';
+import Settings from './components/Settings.tsx';
+import Flags from './components/Flags.tsx';
+import Labels from './components/Labels.tsx';
+import Screen from './components/Screen.tsx';
+import { CPU } from "./utils/ReactiveCPU.ts";
 import { onMount } from "solid-js";
 
 function App() {

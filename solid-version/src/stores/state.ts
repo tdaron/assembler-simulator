@@ -1,5 +1,5 @@
 import { createStore, type SetStoreFunction } from "solid-js/store";
-import { CPU } from "../ReactiveCPU";
+import { CPU } from "../utils/ReactiveCPU";
 
 type SPEED = 1 | 4 | 8 | 16 | 1024
 
