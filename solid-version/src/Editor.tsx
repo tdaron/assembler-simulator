@@ -107,6 +107,7 @@ export default function AssemblyEditor() {
       for (var i = 0, l = code.length; i < l; i++) {
         CPU.memory.store(i, code[i]);
       }
+      setState("labels", Object.entries(labels));
     } catch (err: {error: string, line: number} | any) {
       setState("error", err.error+" (ligne "+err.line+")");
     }
