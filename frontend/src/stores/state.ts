@@ -42,11 +42,13 @@ export interface State {
     settings: Settings;
     quick: boolean;
     memoryHighlight: number;
+    breakpoints: number[];
+    lineHighlight: number;
     code: string;
     recordingKeys: boolean;
     cpuState: CPUState;
     labels: [string, number][];
-    mapping: Record<string, number>;
+    mapping: {[key: number]: number};
     examples: { name: string; code: string }[];
 }
 
@@ -58,6 +60,7 @@ export function createStateStore() {
         error: '',
         speed: 4,
         quick: false,
+        breakpoints: [],
         settings: {
             displayHex: true,
             displayInstr: true,
@@ -71,6 +74,7 @@ export function createStateStore() {
             displayDP: true,
         },
         memoryHighlight: -1,
+        lineHighlight: -1,
         code: "",
         recordingKeys: false,
         cpuState: {

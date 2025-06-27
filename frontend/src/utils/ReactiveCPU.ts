@@ -16,22 +16,27 @@ class ReactiveCPU extends LittleCPU {
     }
     triggerUpdate() {
         if (this.setState) {
-            this.setState!("cpuState", (prev) => ({
-                ...prev,
-                a: this.gpr[0],
-                b: this.gpr[1],
-                c: this.gpr[2],
-                d: this.gpr[3],
-                dp: this.dp,
-                sp: this.sp,
-                pc: this.ip,
-                flags: {
-                    ...prev.flags,
-                    c: this.carry,
-                    f: this.fault || false,
-                    z: this.zero,
-                }
-            }));
+            batch(() => {
+                this.setState!("cpuState", (prev) => ({
+                    ...prev,
+                    a: this.gpr[0],
+                    b: this.gpr[1],
+                    c: this.gpr[2],
+                    d: this.gpr[3],
+                    dp: this.dp,
+                    sp: this.sp,
+                    pc: this.ip,
+                    flags: {
+                        ...prev.flags,
+                        c: this.carry,
+                        f: this.fault || false,
+                        z: this.zero,
+                    }
+                }));
+                this.setState!("lineHighlight", this.state?.mapping[this.ip]!+1)
+            })
+         
+        
         }
 
     }
@@ -57,9 +62,14 @@ class ReactiveCPU extends LittleCPU {
             
               
               this.setState("labels", Object.entries(labels));
+              this.setState("mapping", mapping);
+              this.setState!("lineHighlight", this.state?.mapping[0]!+1)
+
               this.setState("error", "");
             } catch (err: any) {
-              this.setState("error", `${err.error} (ligne ${err.line})`);
+              this.setState("error", `${err.error} (ligne ${err.line+1})`);
+              if (err.line) this.setState!("lineHighlight", err.line+1);
+
             }
 
     }

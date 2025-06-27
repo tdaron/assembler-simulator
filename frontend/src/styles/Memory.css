@@ -66,3 +66,11 @@
 .ram  .marker > small {
   font-family: "Source Code Pro", monospace;
 }
+
+.highlighted {
+  background-color: #fd79a8;
+}
+
+.instruction {
+  font-weight: bold;
+}

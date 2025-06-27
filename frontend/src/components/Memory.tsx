@@ -31,6 +31,9 @@ export default function Memory() {
         return match ? match.className : "";
     };
     const getBGClass = (index: number) => {
+        if (state.memoryHighlight == index) {
+            return "highlighted"
+        }
         const rdclass = getRegisterOrFlagClass(index);
         if (rdclass) return rdclass;
         for (const device of DEVICES) {
@@ -38,6 +41,11 @@ export default function Memory() {
                 return device.name + "-bg";
             }
         }
+        return "";
+    }
+
+    const getInstructionClass = (index: number) => {
+        if (state.mapping[index]) return "instruction";
         return "";
     }
 
@@ -49,7 +57,7 @@ export default function Memory() {
                     {(item, index) =>
                         <div class="memory-block" id={""+index}>
                             <div class={`marker ${getBGClass(index)}`}>
-                                <small>{state.settings.displayHex ? item().toString(16).padStart(2, '0') : item()}</small>
+                                <small class={`${getInstructionClass(index)}`}>{state.settings.displayHex ? item().toString(16).padStart(2, '0') : item()}</small>
                             </div>
                         </div>
                     }
