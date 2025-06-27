@@ -57,6 +57,7 @@ export class Emulator {
       return res;
     } catch (e) {
       this.error = e as string;
+      fs.writeFileSync("runtime_error", e as string);
       return false;
     }
   }
