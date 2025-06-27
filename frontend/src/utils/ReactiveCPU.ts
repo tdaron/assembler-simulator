@@ -67,7 +67,9 @@ class ReactiveCPU extends LittleCPU {
 
               this.setState("error", "");
             } catch (err: any) {
-              this.setState("error", `${err.error} (ligne ${err.line})`);
+              this.setState("error", `${err.error} (ligne ${err.line+1})`);
+              if (err.line) this.setState!("lineHighlight", err.line+1);
+
             }
 
     }

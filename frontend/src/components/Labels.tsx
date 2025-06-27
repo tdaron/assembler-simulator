@@ -5,7 +5,7 @@ import '../styles/Labels.css';
 export default function Labels() {
     const [state, setState] = getStateContext();
 
-    const highlight = (address) => setState("memoryHighlight", address);
+    const highlight = (address: number) => setState("memoryHighlight", address);
     const reset = () => setState("memoryHighlight", -1);
     return (
         <div class="labels">

@@ -227,16 +227,18 @@ export default function Editor() {
 
   let decoration: any;
   createEffect(() => {
-    if (!editor || state.lineHighlight < 0 || !state.isDebugging) return;
+    if (!editor) return;
     if (decoration) {
       editor.deltaDecorations(decoration, []);
     }
+    if (state.lineHighlight < 0 || (!state.isDebugging && state.error == "")) return;
+
     decoration = editor.deltaDecorations([], [
       {
         range: new monaco.Range(state.lineHighlight, 1, state.lineHighlight, 1),
         options: {
           isWholeLine: true,
-          className: 'highlight',
+          className: state.error == "" ? 'highlight' : 'highlight-error',
         },
       },
     ]);
@@ -259,6 +261,7 @@ export default function Editor() {
         </h4>
         <CodeActions/>
       </div>
+      <span class="error">{state.error}</span>
       <div
         ref={container}
         style={{

@@ -13,9 +13,8 @@ export default function CodeActions() {
 
     
 
-    const run = () => {
-        //CPU.reset()
-        CPU.assemble()
+    const dcontinue = () => {
+        if (state.error) return;
         _SetInterval(setInterval(() => {
             CPU.step()
             if (state.breakpoints.includes(state.lineHighlight)) {
@@ -28,6 +27,7 @@ export default function CodeActions() {
     const runQuickly = () => {
         CPU.reset()
         CPU.assemble()
+        if (state.error) return;
         setState("quick", true)
         _SetInterval(setInterval(() => {
             CPU.step()
@@ -52,6 +52,7 @@ export default function CodeActions() {
     const launchDebug = () => {
         CPU.reset()
         CPU.assemble()
+        if (state.error) return;
         setState("isDebugging", true)
     }
 
@@ -67,7 +68,7 @@ export default function CodeActions() {
             <Show when={state.isDebugging === true}>
                 <Show when={!state.isRunning}>
                     <AiOutlineClose color="red" size={35} onClick={() => setState("isDebugging", false)}/>    
-                    <IoPlay color="#2ecc71" size={35} onClick={run} />
+                    <IoPlay color="#2ecc71" size={35} onClick={dcontinue} />
                     <AiOutlineStepForward title="Step" color="#2ecc71" size={35} onClick={() => CPU.step()} />                
                 </Show>
             </Show>
