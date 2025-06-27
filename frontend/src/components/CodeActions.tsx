@@ -43,9 +43,9 @@ export default function CodeActions() {
     }
 
     createEffect(() => {
-        if (state.speed != currentSpeed() && currentSpeed() != 0) {
+        if (state.isDebugging && state.speed != currentSpeed() && currentSpeed() != 0) {
             clearInterval(interval())
-            run()
+            dcontinue()
         }
     })
 
