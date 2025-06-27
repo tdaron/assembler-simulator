@@ -48,7 +48,7 @@ export interface State {
     recordingKeys: boolean;
     cpuState: CPUState;
     labels: [string, number][];
-    mapping: Record<string, number>;
+    mapping: {[key: number]: number};
     examples: { name: string; code: string }[];
 }
 

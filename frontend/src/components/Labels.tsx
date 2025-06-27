@@ -3,8 +3,10 @@ import { getStateContext } from '../utils/stateContext';
 import '../styles/Labels.css'; 
 
 export default function Labels() {
-    const [state] = getStateContext();
-    
+    const [state, setState] = getStateContext();
+
+    const highlight = (address) => setState("memoryHighlight", address);
+    const reset = () => setState("memoryHighlight", -1);
     return (
         <div class="labels">
             <h4>Labels</h4>
@@ -19,7 +21,7 @@ export default function Labels() {
                         {([name, address]) => (
                             <tr>
                                 <td>{name}</td>
-                                <td>{state.settings.displayHex ? address.toString(16).padStart(4, '0') : address}</td>
+                                <td onMouseLeave={reset} onMouseEnter={() => highlight(address)} class='link'>{state.settings.displayHex ? address.toString(16).padStart(4, '0') : address}</td>
                                 <td>{state.cpuState.memory[address]}</td>
                             </tr>
                         )}
