@@ -12,11 +12,16 @@ export default function CodeActions() {
     let [interval, _SetInterval] = createSignal(0);
     let [currentSpeed, setCurrentSpeed] = createSignal(0);
 
+    
+
     const run = () => {
         //CPU.reset()
         CPU.assemble()
         _SetInterval(setInterval(() => {
             CPU.step()
+            if (state.breakpoints.includes(state.lineHighlight)) {
+                stop()
+            }
         }, 1000 / state.speed))
         setCurrentSpeed(state.speed)
         setState("isRunning", true)

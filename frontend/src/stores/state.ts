@@ -42,6 +42,7 @@ export interface State {
     settings: Settings;
     quick: boolean;
     memoryHighlight: number;
+    breakpoints: number[];
     lineHighlight: number;
     code: string;
     recordingKeys: boolean;
@@ -59,6 +60,7 @@ export function createStateStore() {
         error: '',
         speed: 4,
         quick: false,
+        breakpoints: [],
         settings: {
             displayHex: true,
             displayInstr: true,

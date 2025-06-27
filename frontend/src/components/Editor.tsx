@@ -10,8 +10,11 @@ export default function Editor() {
   let container: HTMLDivElement | undefined;
   let editor: monaco.editor.IStandaloneCodeEditor | undefined;
   const [state, setState] = getStateContext(); 
-  const [breakpoints, setBreakpoints] = createSignal<number[]>([]);
   let currentDecorationIds: string[] = [];
+
+  createEffect(() => {
+    console.log(state.breakpoints)
+  })
 
   const languageId = "assembly";
   if (!monaco.languages.getLanguages().some(lang => lang.id === languageId)) {
@@ -176,7 +179,7 @@ export default function Editor() {
       if (e.target.type === monaco.editor.MouseTargetType.GUTTER_GLYPH_MARGIN) {
         const line = e.target.position?.lineNumber;
         if (!line) return;
-        setBreakpoints(prev => {
+        setState("breakpoints",prev => {
           const newBreakpoints = new Set(prev);
           if (newBreakpoints.has(line)) {
             newBreakpoints.delete(line);
@@ -198,7 +201,7 @@ export default function Editor() {
   createEffect(() => {
     if (!editor) return;
 
-    const newDecorations = breakpoints().map(line => ({
+    const newDecorations = state.breakpoints.map(line => ({
       range: new monaco.Range(line, 1, line, 1),
       options: {
         isWholeLine: true,
