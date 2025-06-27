@@ -19,6 +19,7 @@ export default function CodeActions() {
             CPU.step()
         }, 1000 / state.speed))
         setCurrentSpeed(state.speed)
+        setState("isRunning", true)
     }
     const runQuickly = () => {
        // CPU.reset()
@@ -28,12 +29,13 @@ export default function CodeActions() {
             CPU.step()
         }, 1000 / 4096))
         setCurrentSpeed(0)
-
+        setState("isRunning", true)
     }
     const stop = () => {
         setState("quick", false)
         clearInterval(interval())
         _SetInterval(0);
+        setState("isRunning", false);
     }
 
     createEffect(() => {

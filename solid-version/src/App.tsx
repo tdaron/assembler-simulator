@@ -28,14 +28,15 @@ function App() {
         await loadExamples(setState);
         setState("code", state.examples?.find(example => example.name === "Draw in screen")?.code || "");
     });
-
     
     return (
         <StateContext.Provider value={[state, setState]}>
             <Navbar/>
             <div class="columns">
                 <div class="col0">
-                    <SelectExample/>
+                    <Show when={!state.isRunning}>
+                        <SelectExample />
+                    </Show>
                     <Editor />
                 </div>
                 <div class="col1">
