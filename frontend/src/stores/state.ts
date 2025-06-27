@@ -42,6 +42,7 @@ export interface State {
     settings: Settings;
     quick: boolean;
     memoryHighlight: number;
+    lineHighlight: number;
     code: string;
     recordingKeys: boolean;
     cpuState: CPUState;
@@ -71,6 +72,7 @@ export function createStateStore() {
             displayDP: true,
         },
         memoryHighlight: -1,
+        lineHighlight: -1,
         code: "",
         recordingKeys: false,
         cpuState: {

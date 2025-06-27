@@ -14,3 +14,7 @@
 }
 
 .disabled .monaco-editor .cursor { display: none !important; }
+
+.highlight {
+  background-color: #bdc3c7;
+}

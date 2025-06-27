@@ -222,6 +222,32 @@ export default function Editor() {
     }
   })
 
+  let decoration: any;
+  createEffect(() => {
+    if (!editor || state.lineHighlight < 0 || !state.isDebugging) return;
+    if (decoration) {
+      editor.deltaDecorations(decoration, []);
+    }
+    decoration = editor.deltaDecorations([], [
+      {
+        range: new monaco.Range(state.lineHighlight, 1, state.lineHighlight, 1),
+        options: {
+          isWholeLine: true,
+          className: 'highlight',
+        },
+      },
+    ]);
+    
+  })
+  createEffect(() => {
+    if (!state.isDebugging) {
+      if (decoration && editor) {
+        editor.deltaDecorations(decoration, []);
+      }
+  
+    }
+  })
+
   return (
     <>
       <div class="editor-header">
