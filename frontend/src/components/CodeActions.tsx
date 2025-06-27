@@ -17,9 +17,10 @@ export default function CodeActions() {
     const dcontinue = () => {
         if (state.error) return;
         _SetInterval(setInterval(() => {
-            CPU.step()
-            if (state.breakpoints.includes(state.lineHighlight)) {
+            const output = CPU.step();
+            if (!output || state.breakpoints.includes(state.lineHighlight)) {
                 stop()
+                if (!output) setState("isDebugging", false);
             }
         }, 1000 / state.speed))
         setCurrentSpeed(state.speed)
@@ -31,7 +32,9 @@ export default function CodeActions() {
         if (state.error) return;
         setState("quick", true)
         _SetInterval(setInterval(() => {
-            CPU.step()
+            if (!CPU.step()) {
+                stop()
+            }
         }, 1000 / 4096))
         setCurrentSpeed(0)
         setState("isRunning", true)
