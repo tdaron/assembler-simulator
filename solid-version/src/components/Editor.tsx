@@ -245,15 +245,12 @@ export default function Editor() {
       <div
         ref={container}
         style={{
-          height: "80vh",
+          height: "78vh",
           width: "100%",
           "border-radius": "8px",
           overflow: "visible",
         }}
       />
-        <button type="button" onClick={assemble} class="btn-primary">
-          Assemble
-        </button>
     </>
   );
 }
