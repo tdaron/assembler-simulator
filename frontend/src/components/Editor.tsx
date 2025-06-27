@@ -21,7 +21,7 @@ export default function Editor() {
     monaco.languages.register({ id: languageId });
 
     const keywords = ['MOV', 'ADD', 'SUB', 'INC', 'DEC', 'MUL', 'DIV', 'AND', 'OR', 'XOR', 'NOT', 'SHL', 'SHR', 'SAL', 'SAR', 'CMP', 'JMP', 'JC', 'JNC', 'JZ', 'JNZ', 'JA', 'JNBE', 'JAE', 'JNB', 'JB', 'JNAE', 'JBE', 'JNA', 'JE', 'JNE', 'CALL', 'RET', 'PUSH', 'POP', 'HLT', 'DB'];
-    const registers = ['A', 'B', 'C', 'D', 'SP','DP','SM'];
+    const registers = ['A', 'B', 'C', 'D', 'SP','DP','SM','IB'];
 
     monaco.languages.setMonarchTokensProvider(languageId, {
       keywords,
@@ -86,7 +86,8 @@ export default function Editor() {
       B: "General purpose register",
       C: "General purpose register",
       D: "General purpose register",
-      SP: "Stack Pointer. Points to the last element of the stack."
+      SP: "Stack Pointer. Points to the last element of the stack.",
+      IB: "Input Buffer: A constant pointer to the memory address holding the most recently entered character."
     };
     
 

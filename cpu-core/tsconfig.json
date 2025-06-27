@@ -6,8 +6,10 @@
     "moduleResolution": "Node",
     "declaration": true,
     "declarationMap": true,
-    "lib": ["ES2021"],
     "outDir": "dist",
+    "lib": [
+      "es2021"
+    ],
     "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
