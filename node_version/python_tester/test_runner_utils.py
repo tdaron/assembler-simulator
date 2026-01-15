@@ -46,7 +46,7 @@ def run_test(asm_file, test_file, hidden_keyword=HIDDEN_KEYWORD):
             pass
 
         subprocess.call(
-            f"node {os.path.dirname(os.path.abspath(__file__))}/../node_main.js file_to_execute", shell=True)
+            f"npx --yes tsx {os.path.dirname(os.path.abspath(__file__))}/../node_main.js file_to_execute", shell=True)
 
         if os.path.isfile("assembly_error"):
             error = open("assembly_error", "r").read()
@@ -74,7 +74,7 @@ def run_test(asm_file, test_file, hidden_keyword=HIDDEN_KEYWORD):
             if actual_key in registers:
                 res = data["cpu"]["gpr"][registers.index(actual_key)]
             elif actual_key.isnumeric():
-                res = load16(actual_key, data["memory"])
+                res = load16(actual_key, data["cpu"]["memory"]["data"])
             elif key == "SP":
                 res = data["cpu"]["sp"]
             elif type(t[1][key]) is str:
@@ -82,20 +82,20 @@ def run_test(asm_file, test_file, hidden_keyword=HIDDEN_KEYWORD):
                 elem = t[1][key]
                 for i in range(len(elem)):
                     res += chr(load16(data["labels"][actual_key] + offset +
-                                      (2*i), data["memory"]))
+                                      (2*i), data["cpu"]["memory"]["data"]))
             elif type(t[1][key]) is list:
                 array = []
                 for i in range(len(t[1][key])):
                     elem = t[1][key][i]
                     if type(elem) is int:
                         array.append(
-                            load16(data["labels"][actual_key]+(2*i)+offset, data["memory"]))
+                            load16(data["labels"][actual_key]+(2*i)+offset, data["cpu"]["memory"]["data"]))
                     else:
                         array.append("?")
                         elem = "?"
                 res = array
             else:
-                res = load16(data["labels"][actual_key]+offset, data["memory"])
+                res = load16(data["labels"][actual_key]+offset, data["cpu"]["memory"]["data"])
 
             values[key] = res
             if (res != t[1][key]):
