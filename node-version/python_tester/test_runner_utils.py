@@ -46,7 +46,7 @@ def run_test(asm_file, test_file, hidden_keyword=HIDDEN_KEYWORD):
             pass
 
         subprocess.call(
-            f"npx --yes tsx {os.path.dirname(os.path.abspath(__file__))}/../node_main.js file_to_execute", shell=True)
+            f"tsx {os.path.dirname(os.path.abspath(__file__))}/../node_main.js file_to_execute", shell=True)
 
         if os.path.isfile("assembly_error"):
             error = open("assembly_error", "r").read()
