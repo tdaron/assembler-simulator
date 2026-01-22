@@ -54,31 +54,46 @@
 }
 
 .ram {
-  overflow-y: auto;
-  max-height: 50vh;
-  
-  display: grid;
-  grid-template-columns: repeat(16, 1.8em);
-  /* This centers the 16-column block itself within col1 */
-  justify-content: center; 
-  /* This ensures the individual cells are centered if they vary in width */
-  justify-items: center; 
-  
-  margin: 0 auto; /* Extra insurance for centering */
-  gap: 1px;
+    display: grid;
+    /* 17 columns: Label + 16 data blocks */
+    grid-template-columns: min-content repeat(16, 1.8em);
+    justify-content: center;
+    overflow-y: auto;
+    max-height: 50vh;
+    gap: 1px 0px;
 }
 
-/* Optional: Center the "Memory (RAM)" title too */
-h4 {
-  text-align: center;
+/* Header styling */
+.column-label, .corner-label {
+    position: sticky;
+    top: 0;
+    background-color: white; /* Match your app background */
+    z-index: 2;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #428BCA; /* Highlight color for headers */
+    text-align: center;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #eee;
+    user-select: none;
 }
 
+.row-label {
+    grid-column: 1; /* Keep labels in the first column */
+    font-size: 0.7rem;
+    color: #999;
+    padding-right: 10px;
+    text-align: right;
+    align-self: center;
+    user-select: none;
+    font-family: "Source Code Pro", monospace;
+}
+
+/* Ensure data blocks don't hide behind the sticky header */
 .memory-block {
-  /* Remove display: inline-block; as Grid handles this now */
-  width: 1.8em;
-  text-align: center;
+    width: 1.8em;
+    height: 1.8em;
 }
-
 .marker {
   width: 100%; /* Make marker fill the block */
   height: 1.8em; /* Ensure it stays square */
