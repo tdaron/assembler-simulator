@@ -29,14 +29,14 @@ function App() {
         await loadExamples(setState);
         setState("code", state.examples?.find(example => example.name === "Draw in screen")?.code || "");
     });
-    
+
     return (
         <StateContext.Provider value={[state, setState]}>
-            <Navbar/>
+            <Navbar />
             <div class="columns">
                 <div class="col0">
                     <SelectExample />
-                    
+
                     <Editor />
                 </div>
                 <div class="col1">
@@ -47,14 +47,14 @@ function App() {
                 </div>
                 <div class="col2">
                     <Settings />
-                    <Screen />
                     <Show when={!state.quick}>
-                        <Flags/>
+                        <Flags />
                     </Show>
+                    <Screen />
 
                 </div>
             </div>
-        <Credits></Credits>
+            <Credits></Credits>
         </StateContext.Provider>
     )
 }
