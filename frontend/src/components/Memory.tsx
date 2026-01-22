@@ -64,7 +64,7 @@ export default function Memory() {
                     {(_, i) => (
                         <div class="column-label">
                             {state.settings.displayHex
-                                ? i.toString(16).toUpperCase()
+                                ? `0x${i.toString(16).toUpperCase()}`
                                 : i.toString().padStart(2, '0')}
                         </div>
                     )}
