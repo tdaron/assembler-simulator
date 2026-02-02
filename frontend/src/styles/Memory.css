@@ -69,7 +69,8 @@
     
     flex-grow: 1;        /* Take up all remaining vertical space */
     overflow-y: auto;    /* Enable scrolling ONLY here */
-    padding-bottom: 20px; 
+    padding-bottom: 20px;
+    padding-right: 30px; 
 }/* Header styling */
 .column-label, .corner-label {
     position: sticky;
