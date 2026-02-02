@@ -1,0 +1,13 @@
+{
+  "name": "node-version",
+  "type": "module",
+  "scripts": {
+    "test": "mocha --require tsx test/test.ts"
+  },
+  "devDependencies": {
+    "mocha": "^11.7.1",
+    "tsx": "^4.21.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.0.4"
+  }
+}
