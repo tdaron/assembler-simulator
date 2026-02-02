@@ -22,5 +22,21 @@
 .code_buttons svg.disabled {
   fill: grey;
   background-color: rgba(0, 0, 0, .1);;
+}
 
+.assemble-btn {
+  margin-right: 10px;
+  background-color: rgba(0, 0, 0, .05);
+  border: 1px solid rgba(0, 0, 0, .2);
+  padding: 5px 10px;
+  border-radius: 3px;
+  transition: .2s all;
+  font-weight: bold;
+  color: #2ecc71;
+  cursor: pointer;
+}
+
+.assemble-btn:hover {
+  filter: brightness(50%);
+  background-color: rgba(0, 0, 0, .2);
 }

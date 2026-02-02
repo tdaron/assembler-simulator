@@ -3,7 +3,7 @@ import { CPU } from "../utils/ReactiveCPU";
 import { getStateContext } from "../utils/stateContext";
 import { VsDebugPause } from "solid-icons/vs";
 import { IoPlay, IoPlayForward } from "solid-icons/io";
-import { AiFillBug, AiOutlineClose, AiOutlineStepForward } from "solid-icons/ai";
+import { AiOutlineClose, AiOutlineStepForward } from "solid-icons/ai";
 import "../styles/CodeActions.css"; 
 import { RiDocumentFolderDownloadFill, RiDocumentFolderUploadFill} from "solid-icons/ri";
 import "../utils/fileManager.ts"; 
@@ -94,12 +94,12 @@ export default function CodeActions() {
                 <VsDebugPause title="Pause" color="red" size={35} onClick={stop}/>    
             </Show>
             <Show when={state.isDebugging === false && !state.isRunning}>
-                <AiFillBug title="Debug" color="#2ecc71" size={35} onClick={launchDebug} />
+                <button class="assemble-btn" title="Assemble" onClick={launchDebug}>Assemble</button>
                 <IoPlayForward title="Run fast" class="bite" color="#2ecc71" size={35} onClick={runQuickly}/>
             </Show>
             <Show when={state.isDebugging === true}>
                 <Show when={!state.isRunning}>
-                    <AiOutlineClose title="Stop Debugging" color="red" size={35} onClick={() => setState("isDebugging", false)}/>    
+                    <AiOutlineClose title="Stop Debugging" color="red" size={35} onClick={() => { CPU.reset(); setState("labels", []); setState("isDebugging", false); }}/>    
                     <IoPlay title="Run" color="#2ecc71" size={35} onClick={dcontinue} />
                     <AiOutlineStepForward title="Step" color="#2ecc71" size={35} onClick={() => CPU.step()} />                
                 </Show>
