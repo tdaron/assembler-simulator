@@ -41,10 +41,12 @@ export default function CodeActions() {
             try {
                 if (!CPU.step()) {
                     stop()
+                    setState("isDebugging", false)
                 }
             } catch (e) {
                 setState("error", e as string);
                 stop()
+                setState("isDebugging", false)
             }
         }, 1000 / 4096))
         setCurrentSpeed(0)
